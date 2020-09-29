@@ -2,8 +2,10 @@ console.log('log1')
 
 let s = function (sketch) {
     sketch.setup = function () {
-        let h = document.body.clientHeight;
-        let c = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
+        document.body.style['userSelect'] = 'none';
+        let h = document.body.scrollHeight // document.body.clientHeight;
+        let w = document.body.scrollWidth; // document.body.clientWidth;
+        let c = sketch.createCanvas(w, h); // (sketch.windowWidth, sketch.windowHeight)
         c.position(0, 0);
         c.style('pointer-events', 'none')
         sketch.clear();
@@ -13,7 +15,7 @@ let s = function (sketch) {
         sketch.stroke(0);
         sketch.strokeWeight(4);
         if (sketch.mouseIsPressed) {
-            line(sketch.mouseX, sketch.mouseY, sketch.pmouseX, sketch.pmouseY);
+            sketch.line(sketch.mouseX, sketch.mouseY, sketch.pmouseX, sketch.pmouseY);
         }
     }
 }
