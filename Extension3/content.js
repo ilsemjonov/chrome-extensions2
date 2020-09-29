@@ -1,17 +1,21 @@
 console.log('log1')
 
-function setup() {
-    let h = document.body.clientHeight;
-    let c = createCanvas(windowWidth, windowHeight);
-    c.position(0, 0);
-    c.style('pointer-events', 'none')
-    clear();
-}
+let s = function (sketch) {
+    sketch.setup = function () {
+        let h = document.body.clientHeight;
+        let c = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
+        c.position(0, 0);
+        c.style('pointer-events', 'none')
+        sketch.clear();
+    }
 
-function draw() {
-    stroke(0);
-    strokeWeight(4);
-    if (mouseIsPressed) {
-        line(mouseX, mouseY, pmouseX, pmouseY);
+    sketch.draw = function () {
+        sketch.stroke(0);
+        sketch.strokeWeight(4);
+        if (sketch.mouseIsPressed) {
+            line(sketch.mouseX, sketch.mouseY, sketch.pmouseX, sketch.pmouseY);
+        }
     }
 }
+
+let myp5 = new p5(s);
